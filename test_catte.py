@@ -1,0 +1,38 @@
+from catte import make_command, good_function
+
+
+def test_make_command():
+    assert make_command(0xA3, b"\x00") == bytes(
+        [0x51, 0x78, 0xA3, 0x00, 0x01, 0x00, 0x00, 0x00, 0xFF]
+    )
+    assert make_command(
+        0xA6, bytes([0xAA, 0x55, 0x17, 0x38, 0x44, 0x5F, 0x5F, 0x5F, 0x44, 0x38, 0x2C])
+    ) == bytes(
+        [
+            0x51,
+            0x78,
+            0xA6,
+            0x00,
+            0x0B,
+            0x00,
+            0xAA,
+            0x55,
+            0x17,
+            0x38,
+            0x44,
+            0x5F,
+            0x5F,
+            0x5F,
+            0x44,
+            0x38,
+            0x2C,
+            0xA1,
+            0xFF,
+        ]
+    )
+
+
+def test_bitswap():
+    assert good_function(0b00011010) == 0b01011000
+    assert good_function(0) == 0
+    assert good_function(0xFF) == 0xFF
