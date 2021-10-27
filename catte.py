@@ -64,6 +64,7 @@ async def run():
             await client.write_gatt_char(char, buf, True)
             print(".", end="", flush=True)
         print(" Sent.")
+        await client.disconnect()
 
 
 if __name__ == "__main__":
